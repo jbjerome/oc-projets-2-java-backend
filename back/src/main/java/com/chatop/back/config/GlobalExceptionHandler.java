@@ -1,8 +1,8 @@
 package com.chatop.back.config;
 
-import com.chatop.back.user.domain.EmailAlreadyUsedException;
-import com.chatop.back.user.domain.InvalidCredentialsException;
-import com.chatop.back.user.domain.UserNotFoundException;
+import com.chatop.back.user.domain.exception.EmailAlreadyUsedException;
+import com.chatop.back.user.domain.exception.InvalidCredentialsException;
+import com.chatop.back.user.domain.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

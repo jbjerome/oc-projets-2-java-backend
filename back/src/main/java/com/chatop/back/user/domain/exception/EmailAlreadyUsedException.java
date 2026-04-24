@@ -1,4 +1,4 @@
-package com.chatop.back.user.domain;
+package com.chatop.back.user.domain.exception;
 
 public class EmailAlreadyUsedException extends RuntimeException {
 

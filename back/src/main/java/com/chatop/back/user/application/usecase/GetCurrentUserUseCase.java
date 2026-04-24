@@ -1,8 +1,8 @@
-package com.chatop.back.user.application;
+package com.chatop.back.user.application.usecase;
 
-import com.chatop.back.user.domain.User;
-import com.chatop.back.user.domain.UserNotFoundException;
-import com.chatop.back.user.domain.UserRepository;
+import com.chatop.back.user.domain.entity.User;
+import com.chatop.back.user.domain.exception.UserNotFoundException;
+import com.chatop.back.user.domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,9 +1,9 @@
-package com.chatop.back.user.api;
+package com.chatop.back.user.api.controller;
 
 import com.chatop.back.user.api.request.LoginRequest;
 import com.chatop.back.user.api.response.LoginResponse;
-import com.chatop.back.user.application.LoginUserCommand;
-import com.chatop.back.user.application.LoginUserUseCase;
+import com.chatop.back.user.application.command.LoginUserCommand;
+import com.chatop.back.user.application.usecase.LoginUserUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Contrôleur REST dédié à l'authentification d'un utilisateur existant.
  *
- * <p>Un seul endpoint : {@code POST /api/auth/login}. Pour des raisons de
+ * Un seul endpoint : {@code POST /api/auth/login}. Pour des raisons de
  * sécurité (éviter l'énumération d'emails), on ne distingue pas « email
  * inconnu » de « mot de passe incorrect » : les deux renvoient un 401.
  */
@@ -40,7 +40,7 @@ public class LoginController {
      *
      * @param request payload validé contenant {@code email} et {@code password}
      * @return un {@link LoginResponse} contenant le JWT
-     * @throws com.chatop.back.user.domain.InvalidCredentialsException si l'email
+     * @throws com.chatop.back.user.domain.exception.InvalidCredentialsException si l'email
      *         ou le mot de passe ne correspond pas (HTTP 401)
      */
     @PostMapping("/login")

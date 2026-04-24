@@ -1,4 +1,6 @@
-package com.chatop.back.user.domain;
+package com.chatop.back.user.domain.repository;
+
+import com.chatop.back.user.domain.entity.User;
 
 import java.util.Optional;
 

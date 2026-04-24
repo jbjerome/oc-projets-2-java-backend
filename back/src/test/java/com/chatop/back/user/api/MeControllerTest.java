@@ -2,9 +2,10 @@ package com.chatop.back.user.api;
 
 import com.chatop.back.config.GlobalExceptionHandler;
 import com.chatop.back.config.SecurityConfig;
-import com.chatop.back.user.application.GetCurrentUserUseCase;
-import com.chatop.back.user.domain.User;
-import com.chatop.back.user.domain.UserNotFoundException;
+import com.chatop.back.user.api.controller.MeController;
+import com.chatop.back.user.application.usecase.GetCurrentUserUseCase;
+import com.chatop.back.user.domain.entity.User;
+import com.chatop.back.user.domain.exception.UserNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

@@ -1,7 +1,7 @@
-package com.chatop.back.user.infrastructure;
+package com.chatop.back.user.infrastructure.persistence;
 
-import com.chatop.back.user.domain.User;
-import com.chatop.back.user.domain.UserRepository;
+import com.chatop.back.user.domain.entity.User;
+import com.chatop.back.user.domain.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

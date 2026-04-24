@@ -1,4 +1,4 @@
-package com.chatop.back.user.infrastructure;
+package com.chatop.back.user.infrastructure.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,10 +1,11 @@
-package com.chatop.back.user.application;
+package com.chatop.back.user.application.usecase;
 
 import com.chatop.back.auth.domain.TokenIssuer;
-import com.chatop.back.user.domain.InvalidCredentialsException;
-import com.chatop.back.user.domain.PasswordHasher;
-import com.chatop.back.user.domain.User;
-import com.chatop.back.user.domain.UserRepository;
+import com.chatop.back.user.application.command.LoginUserCommand;
+import com.chatop.back.user.domain.exception.InvalidCredentialsException;
+import com.chatop.back.user.domain.service.PasswordHasher;
+import com.chatop.back.user.domain.entity.User;
+import com.chatop.back.user.domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

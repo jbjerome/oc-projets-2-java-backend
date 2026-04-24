@@ -1,4 +1,4 @@
-package com.chatop.back.user.domain;
+package com.chatop.back.user.domain.entity;
 
 import java.time.Instant;
 import java.util.Objects;

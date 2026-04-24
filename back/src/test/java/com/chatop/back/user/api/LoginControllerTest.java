@@ -1,9 +1,10 @@
 package com.chatop.back.user.api;
 
 import com.chatop.back.config.GlobalExceptionHandler;
-import com.chatop.back.user.application.LoginUserCommand;
-import com.chatop.back.user.application.LoginUserUseCase;
-import com.chatop.back.user.domain.InvalidCredentialsException;
+import com.chatop.back.user.api.controller.LoginController;
+import com.chatop.back.user.application.command.LoginUserCommand;
+import com.chatop.back.user.application.usecase.LoginUserUseCase;
+import com.chatop.back.user.domain.exception.InvalidCredentialsException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

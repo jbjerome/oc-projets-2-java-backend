@@ -1,8 +1,8 @@
-package com.chatop.back.user.api;
+package com.chatop.back.user.api.controller;
 
 import com.chatop.back.user.api.response.UserResponse;
-import com.chatop.back.user.application.GetCurrentUserUseCase;
-import com.chatop.back.user.domain.User;
+import com.chatop.back.user.application.usecase.GetCurrentUserUseCase;
+import com.chatop.back.user.domain.entity.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -38,7 +38,7 @@ public class MeController {
      *
      * @param jwt JWT validé injecté par Spring Security
      * @return un {@link UserResponse} sans le mot de passe hashé
-     * @throws com.chatop.back.user.domain.UserNotFoundException si le compte
+     * @throws com.chatop.back.user.domain.exception.UserNotFoundException si le compte
      *         associé au JWT n'existe plus en base (HTTP 404)
      */
     @GetMapping("/me")

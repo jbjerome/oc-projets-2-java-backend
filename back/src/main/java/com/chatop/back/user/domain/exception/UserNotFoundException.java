@@ -1,4 +1,4 @@
-package com.chatop.back.user.domain;
+package com.chatop.back.user.domain.exception;
 
 /**
  * Levée quand un utilisateur référencé (par email ou id) n'existe pas en base.

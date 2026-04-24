@@ -1,4 +1,4 @@
-package com.chatop.back.user.domain;
+package com.chatop.back.user.domain.exception;
 
 /**
  * Levée par {@code LoginUserUseCase} quand l'email est inconnu

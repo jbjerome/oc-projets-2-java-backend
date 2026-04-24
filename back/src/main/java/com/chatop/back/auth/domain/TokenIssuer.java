@@ -1,6 +1,6 @@
 package com.chatop.back.auth.domain;
 
-import com.chatop.back.user.domain.User;
+import com.chatop.back.user.domain.entity.User;
 
 public interface TokenIssuer {
 

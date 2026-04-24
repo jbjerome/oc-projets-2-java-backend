@@ -1,4 +1,4 @@
-package com.chatop.back.user.domain;
+package com.chatop.back.user.domain.entity;
 
 import org.junit.jupiter.api.Test;
 

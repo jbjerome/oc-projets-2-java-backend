@@ -1,8 +1,9 @@
 package com.chatop.back.user.application;
 
-import com.chatop.back.user.domain.User;
-import com.chatop.back.user.domain.UserNotFoundException;
-import com.chatop.back.user.domain.UserRepository;
+import com.chatop.back.user.application.usecase.GetCurrentUserUseCase;
+import com.chatop.back.user.domain.entity.User;
+import com.chatop.back.user.domain.exception.UserNotFoundException;
+import com.chatop.back.user.domain.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

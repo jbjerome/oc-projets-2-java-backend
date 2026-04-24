@@ -1,7 +1,7 @@
 package com.chatop.back.auth.infrastructure;
 
 import com.chatop.back.auth.domain.TokenIssuer;
-import com.chatop.back.user.domain.User;
+import com.chatop.back.user.domain.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;

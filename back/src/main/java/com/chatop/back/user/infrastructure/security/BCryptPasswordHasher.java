@@ -1,6 +1,6 @@
-package com.chatop.back.user.infrastructure;
+package com.chatop.back.user.infrastructure.security;
 
-import com.chatop.back.user.domain.PasswordHasher;
+import com.chatop.back.user.domain.service.PasswordHasher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 

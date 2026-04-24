@@ -1,9 +1,10 @@
 package com.chatop.back.user.api;
 
 import com.chatop.back.config.GlobalExceptionHandler;
-import com.chatop.back.user.application.RegisterUserCommand;
-import com.chatop.back.user.application.RegisterUserUseCase;
-import com.chatop.back.user.domain.EmailAlreadyUsedException;
+import com.chatop.back.user.api.controller.RegisterController;
+import com.chatop.back.user.application.command.RegisterUserCommand;
+import com.chatop.back.user.application.usecase.RegisterUserUseCase;
+import com.chatop.back.user.domain.exception.EmailAlreadyUsedException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

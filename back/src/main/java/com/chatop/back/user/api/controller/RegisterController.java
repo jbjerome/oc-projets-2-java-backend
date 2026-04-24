@@ -1,9 +1,9 @@
-package com.chatop.back.user.api;
+package com.chatop.back.user.api.controller;
 
 import com.chatop.back.user.api.request.RegisterRequest;
 import com.chatop.back.user.api.response.RegisterResponse;
-import com.chatop.back.user.application.RegisterUserCommand;
-import com.chatop.back.user.application.RegisterUserUseCase;
+import com.chatop.back.user.application.command.RegisterUserCommand;
+import com.chatop.back.user.application.usecase.RegisterUserUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -39,7 +39,7 @@ public class RegisterController {
      *
      * @param request payload validé contenant {@code name}, {@code email} et {@code password}
      * @return un {@link RegisterResponse} contenant le JWT à utiliser en header {@code Authorization} des requêtes
-     * @throws com.chatop.back.user.domain.EmailAlreadyUsedException si email déjà utilisé (HTTP 400)
+     * @throws com.chatop.back.user.domain.exception.EmailAlreadyUsedException si email déjà utilisé (HTTP 400)
      */
     @PostMapping("/register")
     @SecurityRequirements
