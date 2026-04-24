@@ -32,6 +32,7 @@ class NimbusJwtTokenIssuer implements TokenIssuer {
         Instant now = Instant.now();
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .subject(user.email())
+                .claim("user_id", user.id())
                 .issuedAt(now)
                 .expiresAt(now.plus(expirationMinutes, ChronoUnit.MINUTES))
                 .build();

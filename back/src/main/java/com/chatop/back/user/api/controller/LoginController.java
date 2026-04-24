@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Contrôleur REST dédié à l'authentification d'un utilisateur existant.
+ * REST controller dedicated to authenticating an existing user.
  *
- * Un seul endpoint : {@code POST /api/auth/login}. Pour des raisons de
- * sécurité (éviter l'énumération d'emails), on ne distingue pas « email
- * inconnu » de « mot de passe incorrect » : les deux renvoient un 401.
+ * Single endpoint: {@code POST /api/auth/login}. For security reasons
+ * (to prevent email enumeration), "unknown email" is not distinguished
+ * from "wrong password": both return a 401.
  */
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = "Login", description = "Authentification d'un utilisateur existant")
+@Tag(name = "Auth", description = "Authentication and current user endpoints")
 public class LoginController {
 
     private final LoginUserUseCase loginUserUseCase;
@@ -36,46 +36,46 @@ public class LoginController {
     }
 
     /**
-     * Vérifie les identifiants et renvoie un JWT signé.
+     * Verifies credentials and returns a signed JWT.
      *
-     * @param request payload validé contenant {@code email} et {@code password}
-     * @return un {@link LoginResponse} contenant le JWT
-     * @throws com.chatop.back.user.domain.exception.InvalidCredentialsException si l'email
-     *         ou le mot de passe ne correspond pas (HTTP 401)
+     * @param request validated payload containing {@code email} and {@code password}
+     * @return a {@link LoginResponse} containing the JWT
+     * @throws com.chatop.back.user.domain.exception.InvalidCredentialsException if the
+     *         email or password does not match (HTTP 401)
      */
     @PostMapping("/login")
     @SecurityRequirements
-    @Operation(summary = "Authentifier un utilisateur et retourner un JWT")
+    @Operation(summary = "Authenticate a user and return a JWT")
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Identifiants valides, JWT émis",
+                    description = "Valid credentials, JWT issued",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
-                                    name = "Succès",
+                                    name = "Success",
                                     value = "{\"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQHRlc3QuY29tIiwiaWF0IjoxNzEyMDAwMDAwLCJleHAiOjE3MTIwMDM2MDB9.signature\"}"
                             )
                     )
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Payload invalide (validation)",
+                    description = "Invalid payload (validation)",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
-                                    name = "Email malformé",
+                                    name = "Malformed email",
                                     value = "{\"email\": \"must be a well-formed email address\"}"
                             )
                     )
             ),
             @ApiResponse(
                     responseCode = "401",
-                    description = "Email ou mot de passe incorrect",
+                    description = "Wrong email or password",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
-                                    name = "Identifiants invalides",
+                                    name = "Invalid credentials",
                                     value = "{\"message\": \"error\"}"
                             )
                     )

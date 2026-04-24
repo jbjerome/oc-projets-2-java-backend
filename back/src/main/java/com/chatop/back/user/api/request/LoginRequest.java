@@ -8,9 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Payload JSON reçu sur {@code POST /api/auth/login}.
+ * JSON payload received on {@code POST /api/auth/login}.
  *
- * @see TokenResponse pour la réponse associée
+ * @see TokenResponse for the associated response
  */
 @Data
 @NoArgsConstructor

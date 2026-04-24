@@ -22,9 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Filtres de sécurité activés (on importe {@link SecurityConfig}) pour que
- * le JWT mocké via {@code jwt()} passe par la chaîne Spring Security et
- * alimente le {@code @AuthenticationPrincipal} du contrôleur.
+ * Security filters enabled (we import {@link SecurityConfig}) so that the
+ * mocked JWT produced by {@code jwt()} goes through the Spring Security
+ * chain and feeds the controller's {@code @AuthenticationPrincipal}.
  */
 @WebMvcTest(MeController.class)
 @Import({SecurityConfig.class, GlobalExceptionHandler.class})

@@ -9,12 +9,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Payload JSON reçu sur {@code POST /api/auth/register}.
+ * JSON payload received on {@code POST /api/auth/register}.
  *
- * <p>Validé automatiquement via {@code @Valid} sur le paramètre du contrôleur.
- * En cas de violation, Spring lève {@code MethodArgumentNotValidException}
- * et le {@code GlobalExceptionHandler} répond HTTP 400 avec la liste des
- * erreurs sous la forme {@code { "champ": "message" }}.
+ * <p>Validated automatically via {@code @Valid} on the controller parameter.
+ * On violation, Spring throws {@code MethodArgumentNotValidException} and
+ * {@code GlobalExceptionHandler} returns HTTP 400 with the list of errors
+ * as {@code { "field": "message" }}.
  */
 @Data
 @NoArgsConstructor
@@ -22,16 +22,16 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RegisterRequest {
 
-    /** Nom d'affichage — obligatoire, non vide. */
+    /** Display name — required, non-blank. */
     @NotBlank
     private String name;
 
-    /** Email valide — obligatoire, sert d'identifiant de connexion (unique en base). */
+    /** Valid email — required, serves as the login identifier (unique in DB). */
     @NotBlank
     @Email
     private String email;
 
-    /** Mot de passe en clair — obligatoire, 6 à 100 caractères, hashé (BCrypt) avant stockage. */
+    /** Plain-text password — required, 6 to 100 characters, hashed (BCrypt) before storage. */
     @NotBlank
     @Size(min = 6, max = 100)
     private String password;

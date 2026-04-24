@@ -6,14 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Réponse JSON renvoyée par {@code POST /api/auth/register} après succès.
+ * JSON response returned by {@code POST /api/auth/register} on success.
  *
- * <p>Sérialisée sous la forme {@code { "token": "eyJhbGciOi…" }}.
- * Le client doit stocker cette valeur et la renvoyer ensuite dans l'en-tête
- * {@code Authorization: Bearer <token>} pour accéder aux endpoints protégés.
+ * <p>Serialized as {@code { "token": "eyJhbGciOi…" }}.
+ * The client must store this value and send it back in the
+ * {@code Authorization: Bearer <token>} header to access protected endpoints.
  *
- * <p>Le token est signé HS256 avec le secret {@code ${jwt.secret}} et expire
- * après {@code ${jwt.expiration-minutes}} minutes.
+ * <p>The token is HS256-signed with the {@code ${jwt.secret}} secret and
+ * expires after {@code ${jwt.expiration-minutes}} minutes.
  */
 @Data
 @NoArgsConstructor
@@ -21,6 +21,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RegisterResponse {
 
-    /** JWT compact sérialisé (header.payload.signature). */
+    /** Compact serialized JWT (header.payload.signature). */
     private String token;
 }

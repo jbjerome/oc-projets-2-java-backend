@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Enveloppe renvoyée par {@code GET /api/rentals} :
+ * Envelope returned by {@code GET /api/rentals}:
  * {@code { "rentals": [ ... ] }}.
  */
 @Data

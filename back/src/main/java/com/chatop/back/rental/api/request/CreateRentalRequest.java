@@ -12,11 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 
 /**
- * Payload {@code multipart/form-data} reçu sur {@code POST /api/rentals}.
+ * {@code multipart/form-data} payload received on {@code POST /api/rentals}.
  *
- * <p>Lié via {@code @ModelAttribute} côté contrôleur (et non {@code @RequestBody}
- * puisque c'est du multipart). Le champ {@code picture} est l'image uploadée
- * par l'utilisateur.
+ * <p>Bound via {@code @ModelAttribute} on the controller (not {@code @RequestBody}
+ * since this is multipart). The {@code picture} field is the image uploaded
+ * by the user.
  */
 @Data
 @NoArgsConstructor

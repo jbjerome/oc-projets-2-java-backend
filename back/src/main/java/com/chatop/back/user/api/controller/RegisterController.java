@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Contrôleur REST dédié à l'inscription d'un nouvel utilisateur.
+ * REST controller dedicated to registering a new user.
  *
- * <p>Un seul endpoint : {@code POST /api/auth/register}. Login et profil
- * courant sont gérés dans des contrôleurs séparés.
+ * <p>Single endpoint: {@code POST /api/auth/register}. Login and the
+ * current-user profile are handled by separate controllers.
  */
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = "Register", description = "Inscription d'un nouvel utilisateur")
+@Tag(name = "Auth", description = "Authentication and current user endpoints")
 public class RegisterController {
 
     private final RegisterUserUseCase registerUserUseCase;
@@ -35,35 +35,35 @@ public class RegisterController {
     }
 
     /**
-     * Crée un nouveau compte utilisateur et renvoie un JWT signé.
+     * Creates a new user account and returns a signed JWT.
      *
-     * @param request payload validé contenant {@code name}, {@code email} et {@code password}
-     * @return un {@link RegisterResponse} contenant le JWT à utiliser en header {@code Authorization} des requêtes
-     * @throws com.chatop.back.user.domain.exception.EmailAlreadyUsedException si email déjà utilisé (HTTP 400)
+     * @param request validated payload containing {@code name}, {@code email} and {@code password}
+     * @return a {@link RegisterResponse} containing the JWT to use in the {@code Authorization} header of requests
+     * @throws com.chatop.back.user.domain.exception.EmailAlreadyUsedException if email already used (HTTP 400)
      */
     @PostMapping("/register")
     @SecurityRequirements
-    @Operation(summary = "Créer un compte utilisateur et retourner un JWT")
+    @Operation(summary = "Create a user account and return a JWT")
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Compte créé, JWT émis",
+                    description = "Account created, JWT issued",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
-                                    name = "Succès",
+                                    name = "Success",
                                     value = "{\"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQHRlc3QuY29tIiwiaWF0IjoxNzEyMDAwMDAwLCJleHAiOjE3MTIwMDM2MDB9.signature\"}"
                             )
                     )
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Payload invalide (validation) ou email déjà utilisé",
+                    description = "Invalid payload (validation) or email already used",
                     content = @Content(
                             mediaType = "application/json",
                             examples = {
                                     @ExampleObject(
-                                            name = "Email malformé",
+                                            name = "Malformed email",
                                             value = "{\"email\": \"must be a well-formed email address\"}"
                                     )
                             }

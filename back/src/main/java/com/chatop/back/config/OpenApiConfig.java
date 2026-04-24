@@ -11,13 +11,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Configuration Swagger / OpenAPI.
+ * Swagger / OpenAPI configuration.
  *
- * <p>Déclare le schéma de sécurité {@code bearerAuth} (JWT), l'applique à
- * toutes les routes par défaut, et injecte automatiquement une réponse 401
- * sur toute opération qui requiert un JWT.
- * Les endpoints publics doivent opter-out via
- * {@code @SecurityRequirements}.
+ * <p>Declares the {@code bearerAuth} security scheme (JWT), applies it to
+ * all routes by default, and automatically injects a 401 response on every
+ * operation that requires a JWT.
+ * Public endpoints must opt-out via {@code @SecurityRequirements}.
  */
 @Configuration
 public class OpenApiConfig {
@@ -30,7 +29,7 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("ChâTop API")
                         .version("v1")
-                        .description("API de location immobilière"))
+                        .description("Rental property API"))
                 .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME))
                 .components(new Components()
                         .addSecuritySchemes(SECURITY_SCHEME,
@@ -41,13 +40,13 @@ public class OpenApiConfig {
     }
 
     /**
-     * Ajoute une réponse 401 sur toutes les opérations qui ne sont pas
-     * explicitement marquées comme publiques (security non-vide ou null).
+     * Adds a 401 response to every operation that is not explicitly
+     * marked as public (security non-empty or null).
      */
     @Bean
     OpenApiCustomizer addUnauthorizedResponse() {
         ApiResponse unauthorized = new ApiResponse()
-                .description("Unauthorized — JWT manquant, expiré ou invalide");
+                .description("Unauthorized — missing, expired or invalid JWT");
 
         return openApi -> openApi.getPaths().values().forEach(pathItem ->
                 pathItem.readOperations().forEach(op -> {

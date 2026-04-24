@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Contrôleur REST renvoyant les informations de l'utilisateur connecté.
+ * REST controller returning information about the authenticated user.
  *
- * <p>L'identité est lue depuis le claim {@code sub} du JWT injecté par
- * Spring Security via {@code @AuthenticationPrincipal}. Aucune recherche
- * par ID ni paramètre n'est exposé — on ne peut voir que son propre profil.
+ * <p>Identity is read from the JWT {@code sub} claim injected by Spring
+ * Security via {@code @AuthenticationPrincipal}. No ID lookup or parameter
+ * is exposed — you can only see your own profile.
  */
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = "Me", description = "Informations sur l'utilisateur connecté")
+@Tag(name = "Auth", description = "Authentication and current user endpoints")
 public class MeController {
 
     private final GetCurrentUserUseCase getCurrentUserUseCase;
@@ -34,23 +34,23 @@ public class MeController {
     }
 
     /**
-     * Renvoie le profil de l'utilisateur courant.
+     * Returns the current user's profile.
      *
-     * @param jwt JWT validé injecté par Spring Security
-     * @return un {@link UserResponse} sans le mot de passe hashé
-     * @throws com.chatop.back.user.domain.exception.UserNotFoundException si le compte
-     *         associé au JWT n'existe plus en base (HTTP 404)
+     * @param jwt validated JWT injected by Spring Security
+     * @return a {@link UserResponse} without the password hash
+     * @throws com.chatop.back.user.domain.exception.UserNotFoundException if the account
+     *         associated with the JWT no longer exists in the database (HTTP 404)
      */
     @GetMapping("/me")
-    @Operation(summary = "Récupérer le profil de l'utilisateur connecté")
+    @Operation(summary = "Retrieve the authenticated user's profile")
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Profil de l'utilisateur",
+                    description = "User profile",
                     content = @Content(
                             mediaType = "application/json",
                             examples = @ExampleObject(
-                                    name = "Succès",
+                                    name = "Success",
                                     value = "{\"id\": 1, \"name\": \"John Doe\", \"email\": \"john@test.com\", \"created_at\": \"2024-01-15T10:00:00Z\", \"updated_at\": \"2024-01-15T10:00:00Z\"}"
                             )
                     )

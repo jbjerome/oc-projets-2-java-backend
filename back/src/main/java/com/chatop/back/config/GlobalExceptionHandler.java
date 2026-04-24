@@ -1,5 +1,7 @@
 package com.chatop.back.config;
 
+import com.chatop.back.rental.domain.exception.NotRentalOwnerException;
+import com.chatop.back.rental.domain.exception.RentalNotFoundException;
 import com.chatop.back.user.domain.exception.EmailAlreadyUsedException;
 import com.chatop.back.user.domain.exception.InvalidCredentialsException;
 import com.chatop.back.user.domain.exception.UserNotFoundException;
@@ -13,12 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Traduction des exceptions métier en réponses HTTP.
+ * Translates business exceptions into HTTP responses.
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /** 400 — violation des contraintes de validation sur un DTO. */
+    /** 400 — validation constraint violation on a DTO. */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> onValidation(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -28,21 +30,33 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    /** 400 — email déjà utilisé à l'inscription. */
+    /** 400 — email already used at registration. */
     @ExceptionHandler(EmailAlreadyUsedException.class)
     public ResponseEntity<Map<String, String>> onEmailInUse(EmailAlreadyUsedException ex) {
         return ResponseEntity.badRequest().body(Map.of("email", ex.getMessage()));
     }
 
-    /** 401 — login raté (email inconnu ou mot de passe faux). */
+    /** 401 — login failed (unknown email or wrong password). */
     @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<Map<String, String>> onInvalidCredentials(InvalidCredentialsException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "error"));
     }
 
-    /** 404 — utilisateur référencé (typiquement par le JWT) inexistant. */
+    /** 404 — referenced user (typically via the JWT) does not exist. */
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<Map<String, String>> onUserNotFound(UserNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", ex.getMessage()));
+    }
+
+    /** 404 — rental id does not exist. */
+    @ExceptionHandler(RentalNotFoundException.class)
+    public ResponseEntity<Map<String, String>> onRentalNotFound(RentalNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", ex.getMessage()));
+    }
+
+    /** 403 — the authenticated user is not the owner of the targeted rental. */
+    @ExceptionHandler(NotRentalOwnerException.class)
+    public ResponseEntity<Map<String, String>> onNotRentalOwner(NotRentalOwnerException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("message", ex.getMessage()));
     }
 }

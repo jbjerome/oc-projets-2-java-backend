@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 /**
- * Payload {@code multipart/form-data} reçu sur {@code PUT /api/rentals/:id}.
+ * {@code multipart/form-data} payload received on {@code PUT /api/rentals/:id}.
  *
- * <p>L'image ({@code picture}) n'est pas modifiable via cet endpoint
- * conformément à la définition de l'API.
+ * <p>The image ({@code picture}) cannot be updated through this endpoint,
+ * in line with the API definition.
  */
 @Data
 @NoArgsConstructor

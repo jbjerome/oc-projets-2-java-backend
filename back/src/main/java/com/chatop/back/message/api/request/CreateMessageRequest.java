@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Payload JSON reçu sur {@code POST /api/messages}.
+ * JSON payload received on {@code POST /api/messages}.
  */
 @Data
 @NoArgsConstructor

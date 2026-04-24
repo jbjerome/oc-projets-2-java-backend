@@ -1,10 +1,10 @@
 package com.chatop.back.user.domain.exception;
 
 /**
- * Levée quand un utilisateur référencé (par email ou id) n'existe pas en base.
+ * Thrown when a referenced user (by email or id) does not exist in the database.
  *
- * <p>Cas d'usage principal : lors de {@code GET /api/auth/me} si le compte
- * associé au JWT a été supprimé entre l'émission du token et son utilisation.
+ * <p>Main use case: during {@code GET /api/auth/me} if the account associated
+ * with the JWT has been deleted between token issuance and its use.
  */
 public class UserNotFoundException extends RuntimeException {
 

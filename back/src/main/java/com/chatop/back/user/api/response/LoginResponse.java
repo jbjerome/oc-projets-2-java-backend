@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Réponse JSON renvoyée par {@code POST /api/auth/login} après succès.
+ * JSON response returned by {@code POST /api/auth/login} on success.
  *
- * <p>Sérialisée sous la forme {@code { "token": "eyJhbGciOi…" }}.
+ * <p>Serialized as {@code { "token": "eyJhbGciOi…" }}.
  */
 @Data
 @NoArgsConstructor
@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LoginResponse {
 
-    /** JWT compact sérialisé (header.payload.signature). */
+    /** Compact serialized JWT (header.payload.signature). */
     private String token;
 }

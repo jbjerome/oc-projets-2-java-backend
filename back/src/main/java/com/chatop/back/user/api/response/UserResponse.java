@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 
 /**
- * Représentation d'un utilisateur renvoyée par
- * {@code GET /api/auth/me} et {@code GET /api/user/:id}.
+ * User representation returned by
+ * {@code GET /api/auth/me} and {@code GET /api/user/:id}.
  *
- * <p>Ne contient jamais le mot de passe hashé.
+ * <p>Never contains the password hash.
  */
 @Data
 @NoArgsConstructor

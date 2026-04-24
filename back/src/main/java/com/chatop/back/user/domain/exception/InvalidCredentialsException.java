@@ -1,11 +1,11 @@
 package com.chatop.back.user.domain.exception;
 
 /**
- * Levée par {@code LoginUserUseCase} quand l'email est inconnu
- * OU que le mot de passe ne correspond pas.
+ * Thrown by {@code LoginUserUseCase} when the email is unknown
+ * OR the password does not match.
  *
- * <p>Le message est volontairement générique : ne pas distinguer les deux
- * cas évite la fuite d'information (énumération d'emails).
+ * <p>The message is intentionally generic: not distinguishing the two cases
+ * prevents information leakage (email enumeration).
  */
 public class InvalidCredentialsException extends RuntimeException {
 
