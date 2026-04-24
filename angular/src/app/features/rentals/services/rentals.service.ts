@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Rental } from 'src/app/features/rentals/interfaces/rental.interface';
 import { RentalResponse } from '../interfaces/api/rentalResponse.interface';
 import { RentalsResponse } from '../interfaces/api/rentalsResponse.interface';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { RentalsResponse } from '../interfaces/api/rentalsResponse.interface';
 })
 export class RentalsService {
 
-  private pathService = 'api/rentals';
+  private pathService = `${environment.apiUrl}/rentals`;
 
   constructor(private httpClient: HttpClient) { }
 

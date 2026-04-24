@@ -59,6 +59,35 @@ services:
     volumes:
       - ./ressources/minio/create-bucket.sh:/scripts/create-bucket.sh:ro
 
+  backend:
+    build:
+      context: ./back
+    container_name: chatop_backend
+    restart: unless-stopped
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      SERVER_PORT: 3001
+      DB_HOST: mariadb
+      MINIO_ENDPOINT: http://minio:9000
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build:
+      context: ./angular
+    container_name: chatop_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
 volumes:
   mariadb_data:
   minio_data:

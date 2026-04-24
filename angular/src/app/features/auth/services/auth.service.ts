@@ -5,13 +5,14 @@ import { LoginRequest } from '../interfaces/loginRequest.interface';
 import { AuthSuccess  } from '../interfaces/authSuccess.interface';
 import { RegisterRequest } from '../interfaces/registerRequest.interface';
 import { User } from 'src/app/interfaces/user.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private pathService = 'api/auth';
+  private pathService = `${environment.apiUrl}/auth`;
 
   constructor(private httpClient: HttpClient) { }
 
