@@ -26,6 +26,11 @@ class JpaUserRepositoryAdapter implements UserRepository {
     }
 
     @Override
+    public Optional<User> findById(Long id) {
+        return delegate.findById(id).map(this::toDomain);
+    }
+
+    @Override
     public User save(User user) {
         JpaUserEntity entity = toEntity(user);
         JpaUserEntity saved = delegate.save(entity);
