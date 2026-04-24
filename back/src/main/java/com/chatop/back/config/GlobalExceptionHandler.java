@@ -1,5 +1,8 @@
 package com.chatop.back.config;
 
+import com.chatop.back.rental.domain.exception.InvalidPictureUploadException;
+import com.chatop.back.rental.domain.exception.InvalidPriceException;
+import com.chatop.back.rental.domain.exception.InvalidSurfaceException;
 import com.chatop.back.rental.domain.exception.NotRentalOwnerException;
 import com.chatop.back.rental.domain.exception.RentalNotFoundException;
 import com.chatop.back.user.domain.exception.EmailAlreadyUsedException;
@@ -58,5 +61,23 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotRentalOwnerException.class)
     public ResponseEntity<Map<String, String>> onNotRentalOwner(NotRentalOwnerException ex) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("message", ex.getMessage()));
+    }
+
+    /** 400 — invalid price value (negative, null). */
+    @ExceptionHandler(InvalidPriceException.class)
+    public ResponseEntity<Map<String, String>> onInvalidPrice(InvalidPriceException ex) {
+        return ResponseEntity.badRequest().body(Map.of("price", ex.getMessage()));
+    }
+
+    /** 400 — invalid surface value (negative, null). */
+    @ExceptionHandler(InvalidSurfaceException.class)
+    public ResponseEntity<Map<String, String>> onInvalidSurface(InvalidSurfaceException ex) {
+        return ResponseEntity.badRequest().body(Map.of("surface", ex.getMessage()));
+    }
+
+    /** 400 — invalid uploaded picture (missing, wrong type, too large). */
+    @ExceptionHandler(InvalidPictureUploadException.class)
+    public ResponseEntity<Map<String, String>> onInvalidPicture(InvalidPictureUploadException ex) {
+        return ResponseEntity.badRequest().body(Map.of("picture", ex.getMessage()));
     }
 }

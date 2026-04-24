@@ -1,7 +1,7 @@
 package com.chatop.back.rental.api.controller;
 
 import com.chatop.back.rental.api.request.CreateRentalRequest;
-import com.chatop.back.rental.api.response.MessageResponse;
+import com.chatop.back.shared.api.response.ApiMessage;
 import com.chatop.back.rental.application.command.CreateRentalCommand;
 import com.chatop.back.rental.application.usecase.CreateRentalUseCase;
 import com.chatop.back.rental.domain.vo.PictureUpload;
@@ -32,7 +32,7 @@ public class CreateRentalController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Create a new rental")
-    public MessageResponse create(@Valid @ModelAttribute CreateRentalRequest request,
+    public ApiMessage create(@Valid @ModelAttribute CreateRentalRequest request,
                                   @AuthenticationPrincipal Jwt jwt) throws IOException {
         createRentalUseCase.handle(new CreateRentalCommand(
                 request.getName(),
@@ -42,7 +42,7 @@ public class CreateRentalController {
                 toPictureUpload(request.getPicture()),
                 currentUserId(jwt)
         ));
-        return MessageResponse.builder().message("Rental created !").build();
+        return ApiMessage.builder().message("Rental created !").build();
     }
 
     private static PictureUpload toPictureUpload(MultipartFile file) throws IOException {

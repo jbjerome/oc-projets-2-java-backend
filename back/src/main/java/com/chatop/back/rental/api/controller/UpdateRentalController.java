@@ -1,7 +1,7 @@
 package com.chatop.back.rental.api.controller;
 
 import com.chatop.back.rental.api.request.UpdateRentalRequest;
-import com.chatop.back.rental.api.response.MessageResponse;
+import com.chatop.back.shared.api.response.ApiMessage;
 import com.chatop.back.rental.application.command.UpdateRentalCommand;
 import com.chatop.back.rental.application.usecase.UpdateRentalUseCase;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,7 +28,7 @@ public class UpdateRentalController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update an existing rental")
-    public MessageResponse update(@PathVariable Long id,
+    public ApiMessage update(@PathVariable Long id,
                                   @Valid @ModelAttribute UpdateRentalRequest request,
                                   @AuthenticationPrincipal Jwt jwt) {
         updateRentalUseCase.handle(new UpdateRentalCommand(
@@ -39,7 +39,7 @@ public class UpdateRentalController {
                 request.getDescription(),
                 currentUserId(jwt)
         ));
-        return MessageResponse.builder().message("Rental updated !").build();
+        return ApiMessage.builder().message("Rental updated !").build();
     }
 
     private static Long currentUserId(Jwt jwt) {

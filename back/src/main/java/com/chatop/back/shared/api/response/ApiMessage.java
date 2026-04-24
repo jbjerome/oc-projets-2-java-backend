@@ -1,4 +1,4 @@
-package com.chatop.back.message.api.response;
+package com.chatop.back.shared.api.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MessageResponse {
+public class ApiMessage {
 
     private String message;
 }

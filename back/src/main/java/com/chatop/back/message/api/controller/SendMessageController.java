@@ -1,7 +1,7 @@
 package com.chatop.back.message.api.controller;
 
 import com.chatop.back.message.api.request.CreateMessageRequest;
-import com.chatop.back.message.api.response.MessageResponse;
+import com.chatop.back.shared.api.response.ApiMessage;
 import com.chatop.back.message.application.command.SendMessageCommand;
 import com.chatop.back.message.application.usecase.SendMessageUseCase;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,12 +25,12 @@ public class SendMessageController {
 
     @PostMapping
     @Operation(summary = "Send a message to a rental owner")
-    public MessageResponse send(@Valid @RequestBody CreateMessageRequest request) {
+    public ApiMessage send(@Valid @RequestBody CreateMessageRequest request) {
         sendMessageUseCase.handle(new SendMessageCommand(
                 request.getUserId(),
                 request.getRentalId(),
                 request.getMessage()
         ));
-        return MessageResponse.builder().message("Message send with success").build();
+        return ApiMessage.builder().message("Message send with success").build();
     }
 }
