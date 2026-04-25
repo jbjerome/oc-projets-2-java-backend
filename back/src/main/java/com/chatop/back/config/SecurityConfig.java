@@ -26,9 +26,12 @@ import java.util.List;
 public class SecurityConfig {
 
     private final String jwtSecret;
+    private final List<String> corsAllowedOrigins;
 
-    public SecurityConfig(@Value("${jwt.secret}") String jwtSecret) {
+    public SecurityConfig(@Value("${jwt.secret}") String jwtSecret,
+                          @Value("${cors.allowed-origins}") List<String> corsAllowedOrigins) {
         this.jwtSecret = jwtSecret;
+        this.corsAllowedOrigins = corsAllowedOrigins;
     }
 
     @Bean
@@ -58,7 +61,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:3000"));
+        config.setAllowedOrigins(corsAllowedOrigins);
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

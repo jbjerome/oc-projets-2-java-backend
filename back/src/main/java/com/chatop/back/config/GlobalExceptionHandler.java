@@ -1,5 +1,6 @@
 package com.chatop.back.config;
 
+import com.chatop.back.message.domain.exception.InvalidMessageException;
 import com.chatop.back.rental.domain.exception.InvalidPictureUploadException;
 import com.chatop.back.rental.domain.exception.InvalidPriceException;
 import com.chatop.back.rental.domain.exception.InvalidSurfaceException;
@@ -79,5 +80,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidPictureUploadException.class)
     public ResponseEntity<Map<String, String>> onInvalidPicture(InvalidPictureUploadException ex) {
         return ResponseEntity.badRequest().body(Map.of("picture", ex.getMessage()));
+    }
+
+    /** 400 — invalid message (blank content, exceeds max length, non-positive ids). */
+    @ExceptionHandler(InvalidMessageException.class)
+    public ResponseEntity<Map<String, String>> onInvalidMessage(InvalidMessageException ex) {
+        return ResponseEntity.badRequest().body(Map.of("message", ex.getMessage()));
     }
 }
