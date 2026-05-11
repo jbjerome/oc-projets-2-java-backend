@@ -1,4 +1,4 @@
-package com.chatop.back.rental.model;
+package com.chatop.back.rental.vo;
 
 import com.chatop.back.rental.exception.InvalidSurfaceException;
 

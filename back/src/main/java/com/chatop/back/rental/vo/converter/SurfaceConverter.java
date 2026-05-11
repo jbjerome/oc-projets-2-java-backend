@@ -1,5 +1,6 @@
-package com.chatop.back.rental.model;
+package com.chatop.back.rental.vo.converter;
 
+import com.chatop.back.rental.vo.Surface;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

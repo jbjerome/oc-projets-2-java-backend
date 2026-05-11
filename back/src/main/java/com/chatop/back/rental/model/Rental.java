@@ -1,5 +1,7 @@
 package com.chatop.back.rental.model;
 
+import com.chatop.back.rental.vo.Price;
+import com.chatop.back.rental.vo.Surface;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
